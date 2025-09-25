@@ -8,7 +8,7 @@ if (Test-Path ".\venv") {
 }
 else {
     Write-Host "Creando entorno virtual 'venv'..." -ForegroundColor Blue
-    py -m venv venv
+    python -m venv venv
     Write-Host "Entorno virtual creado." -ForegroundColor Green
 }
 
