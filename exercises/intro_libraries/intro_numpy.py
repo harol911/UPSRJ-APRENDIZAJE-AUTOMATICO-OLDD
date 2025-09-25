@@ -29,7 +29,7 @@ set_logging(log_file="intro_numpy.log")
 #
 # TODO: Crea un arreglo 'arg1' de 10 elementos con valor 0. 
 #
-arg1 = None
+arg1 = np.zeros(10)
 
 # Impresion de la salida arg1
 plog(f"arreglo 1: {arg1}", level=ERROR if arg1 is None else DEBUG, eol=True)
@@ -38,7 +38,7 @@ plog(f"arreglo 1: {arg1}", level=ERROR if arg1 is None else DEBUG, eol=True)
 #
 # TODO: Genera los números del 10 al 49 en un arreglo 'arg2'. 
 #
-arg2 = None
+arg2 = np.arange(10, 50)
 
 # Impresion de la salida arg2
 plog(f"arreglo 2: {arg2}", level=ERROR if arg2 is None else DEBUG, eol=True)
@@ -47,7 +47,7 @@ plog(f"arreglo 2: {arg2}", level=ERROR if arg2 is None else DEBUG, eol=True)
 #
 # TODO: Invierte el orden del arreglo 'arg2', guardando el resultado en 'arg3'. 
 #
-arg3 = None
+arg3 = arg2[::-1]
 
 # Impresion de la salida arg3
 plog(f"arreglo 3: {arg3}", level=ERROR if arg3 is None else DEBUG, eol=True)
@@ -56,7 +56,7 @@ plog(f"arreglo 3: {arg3}", level=ERROR if arg3 is None else DEBUG, eol=True)
 #
 # TODO: Crea una matriz 3x3 llamada 'mat' con valores del 0 al 8
 #
-mat = None
+mat = np.arange(9).reshape(3, 3)
 
 # Impresion de la salida mat
 plog(f"matriz:\n{mat}", level=ERROR if mat is None else DEBUG, eol=True)
@@ -65,7 +65,7 @@ plog(f"matriz:\n{mat}", level=ERROR if mat is None else DEBUG, eol=True)
 #
 # TODO: Encuentra posiciones donde el valor > 5 en 'mat', guardando los índices en 'indices'
 #
-indices = None
+indices = np.argwhere(mat > 5)
 
 # Impresion de la salida indices
 plog(f"indices: {indices}", level=ERROR if indices is None else DEBUG, eol=True)
@@ -74,9 +74,9 @@ plog(f"indices: {indices}", level=ERROR if indices is None else DEBUG, eol=True)
 #
 # TODO: Calcula la media, mediana y desviaciación estándar sobre el arreglo 'arg2', guardando los resultados en 'mean', 'median' y 'std'
 #
-mean = None
-median = None
-std = None
+mean = np.mean(arg2)
+median = np.median(arg2)
+std = np.std(arg2) 
 
 # Impresion de la salida mean, median y std
 plog(f"mean: {mean}, median: {median}, std: {std}", level=ERROR if None in (mean, median, std) else DEBUG, eol=True)
@@ -85,7 +85,7 @@ plog(f"mean: {mean}, median: {median}, std: {std}", level=ERROR if None in (mean
 #
 # TODO: Genera la matriz identidad 4x4 llamada 'identity'
 #
-identity = None
+identity = np.eye(4)
 
 # Impresion de la salida identity
 plog(f"identity:\n{identity}", level=ERROR if identity is None else DEBUG, eol=True)
@@ -95,9 +95,9 @@ plog(f"identity:\n{identity}", level=ERROR if identity is None else DEBUG, eol=T
 # TODO: Crea dos matrices 2x2 llamadas 'A' y 'B', llénalas con numeros sucesivos del 1 al 8, 
 #       multiplícalas y guarda el resultado en 'product'
 #
-A = None
-B = None
-product = None
+A = np.array([[1, 2], [3, 4]])
+B = np.array([[5, 6], [7, 8]])
+product = np.dot(A, B)
 
 # Impresion de la salida product
 plog(f"product:\n{product}", level=ERROR if product is None else DEBUG, eol=True)
@@ -107,7 +107,7 @@ plog(f"product:\n{product}", level=ERROR if product is None else DEBUG, eol=True
 # TODO: Declara una función 'normalize 'que normalice un arreglo usando la fórmula: (x - min) / (max - min), 
 #       llamala sobre el arreglo 'arg2' y guarda el resultado en 'normalized'
 #
-normalized = None
+normalized = normalize(arg2)
 
 # Impresion de la salida normalized
 plog(f"normalized: {normalized}", level=ERROR if normalized is None else DEBUG, eol=True)
@@ -117,7 +117,9 @@ plog(f"normalized: {normalized}", level=ERROR if normalized is None else DEBUG, 
 # TODO: Genera un arreglo 1x100 de numeros aleatorios con una semilla de 0. 
 #       Cuenta cuántos valores están entre 0.3 y 0.7 usando np.logical_and, guardando el conteo en 'count'
 #
-count = None
+np.random.seed(0)
+random_array = np.random.rand(100)
+count = np.sum(np.logical_and(normalized > 0.3, normalized < 0.7))
 
 # Impresion de la salida count
 plog(f"count: {count}", level=ERROR if count is None else DEBUG, eol=True)
