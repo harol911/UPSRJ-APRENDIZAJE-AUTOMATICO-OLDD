@@ -108,9 +108,10 @@ plog(f"product:\n{product}", level=ERROR if product is None else DEBUG, eol=True
 #       llamala sobre el arreglo 'arg2' y guarda el resultado en 'normalized'
 #
 def normalize(val):
-    return 0
+    return (val - val.min()) / (val.max() - val.min())
 
 normalized = normalize(arg2)
+
 
 # Impresion de la salida normalized
 plog(f"normalized: {normalized}", level=ERROR if normalized is None else DEBUG, eol=True)
@@ -119,10 +120,10 @@ plog(f"normalized: {normalized}", level=ERROR if normalized is None else DEBUG, 
 #
 # TODO: Genera un arreglo 1x100 de numeros aleatorios con una semilla de 0. 
 #       Cuenta cuántos valores están entre 0.3 y 0.7 usando np.logical_and, guardando el conteo en 'count'
-#
+
 np.random.seed(0)
 random_array = np.random.rand(100)
-count = np.sum(np.logical_and(normalized > 0.3, normalized < 0.7))
+count = np.sum(np.logical_and(random_array > 0.3, random_array < 0.7))
 
 # Impresion de la salida count
 plog(f"count: {count}", level=ERROR if count is None else DEBUG, eol=True)
