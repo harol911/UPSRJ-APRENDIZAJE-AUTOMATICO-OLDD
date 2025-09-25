@@ -26,9 +26,9 @@ set_logging(log_file="intro_numpy.log")
 #########################################################################
 
 # Ejercicio 1: Crear un arreglo de 10 ceros
-#
+
 # TODO: Crea un arreglo 'arg1' de 10 elementos con valor 0. 
-#
+
 arg1 = np.zeros(10)
 
 # Impresion de la salida arg1
