@@ -107,6 +107,9 @@ plog(f"product:\n{product}", level=ERROR if product is None else DEBUG, eol=True
 # TODO: Declara una función 'normalize 'que normalice un arreglo usando la fórmula: (x - min) / (max - min), 
 #       llamala sobre el arreglo 'arg2' y guarda el resultado en 'normalized'
 #
+def normalize(val):
+    return 0
+
 normalized = normalize(arg2)
 
 # Impresion de la salida normalized
