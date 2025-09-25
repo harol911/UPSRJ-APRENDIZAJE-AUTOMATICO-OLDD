@@ -65,7 +65,7 @@ plog(f"matriz:\n{mat}", level=ERROR if mat is None else DEBUG, eol=True)
 #
 # TODO: Encuentra posiciones donde el valor > 5 en 'mat', guardando los índices en 'indices'
 #
-indices = np.argwhere(mat > 5)
+indices = np.where(mat.flatten() > 5)
 
 # Impresion de la salida indices
 plog(f"indices: {indices}", level=ERROR if indices is None else DEBUG, eol=True)
