@@ -112,6 +112,7 @@ def normalize(val):
 
 normalized = normalize(arg2)
 
+#1
 
 # Impresion de la salida normalized
 plog(f"normalized: {normalized}", level=ERROR if normalized is None else DEBUG, eol=True)
