@@ -11,10 +11,10 @@ from py_utils.logger import set_logging, plog
 
 set_logging(log_file="intro_pandas.log")
 
-# Definir rutas de archivos
-input_csv  = os.path.join(os.path.dirname(__file__), '../exercises/intro_libraries/inputs/estudiantes.csv')
-input_json = os.path.join(os.path.dirname(__file__), '../exercises/intro_libraries/inputs/estudiantes.json')
-input_yaml = os.path.join(os.path.dirname(__file__), '../exercises/intro_libraries/inputs/estudiantes.yaml')
+# Definir rutas de archivos (corregidas)
+input_csv  = os.path.join(os.path.dirname(__file__), '../../exercises/intro_libraries/inputs/estudiantes.csv')
+input_json = os.path.join(os.path.dirname(__file__), '../../exercises/intro_libraries/inputs/estudiantes.json')
+input_yaml = os.path.join(os.path.dirname(__file__), '../../exercises/intro_libraries/inputs/estudiantes.yaml')
 
 # Cargamos DataFrames
 _csv_df = pd.read_csv(input_csv)
@@ -58,7 +58,7 @@ plog(f"Total hombres: {total_male}", level=ERROR if total_male is None else DEBU
 plog(f"Total mujeres: {total_female}", level=ERROR if total_female is None else DEBUG, eol=True)
 
 # Ejercicio 08: Exportar datos (usar above_nine)
-output_dir = os.path.join(os.path.dirname(__file__), "outputs")
+output_dir = os.path.join(os.path.dirname(__file__), '../../exercises/intro_libraries/outputs')
 os.makedirs(output_dir, exist_ok=True)
 
 above_nine.to_csv(os.path.join(output_dir, "excelentes.csv"), index=False)
@@ -82,4 +82,3 @@ count_compare = (
     )
 )
 plog(f"Registros en CSV/JSON/YAML: {count_compare}", level=ERROR if count_compare is None else DEBUG, eol=True)
-
