@@ -1,57 +1,47 @@
 """
-📊 intro_pandas.py
+intro_pandas.py
 
-Ejercicios prácticos para manipular datos usando Pandas.
+Ejercicios prácticos para manipular datos usando pandas, JSON y YAML.
 ─────────────────────────────────────────────────────────────
 🔧 Requisitos:
     - pandas
+    - pyyaml
+    - json
 ─────────────────────────────────────────────────────────────
-
-autor: https://github.com/chucholoport
-fecha: 11/09/2025
+Autor: Adaptado para Harol
 """
 
-# Librerías necesarias
 import pandas as pd
 import json
 import yaml
+from pathlib import Path
 
-# ----------------------------
-# Ejercicio 1: Leer CSV
-# ----------------------------
-csv_df = pd.read_csv('data/students.csv')  # Cambia la ruta si es necesario
-csv_data = csv_df  # mantener variable que autograder espera
+# --- Definir la ruta base del proyecto ---
+BASE_DIR = Path(__file__).resolve().parent.parent.parent  # Ajusta según tu estructura
+DATA_DIR = BASE_DIR / 'data'
 
-# ----------------------------
-# Ejercicio 2: Leer JSON
-# ----------------------------
-with open('data/students.json', 'r', encoding='utf-8') as f:
-    json_df = pd.DataFrame(json.load(f))
-json_data = json_df
+# --- Ejercicio 1: Cargar CSV ---
+csv_path = DATA_DIR / 'students.csv'
+csv_data = pd.read_csv(csv_path)
 
-# ----------------------------
-# Ejercicio 3: Leer YAML
-# ----------------------------
-with open('data/students.yaml', 'r', encoding='utf-8') as f:
-    yaml_df = pd.DataFrame(yaml.safe_load(f))
-yaml_data = yaml_df
+# --- Ejercicio 2: Cargar JSON ---
+json_path = DATA_DIR / 'students.json'
+with open(json_path, 'r', encoding='utf-8') as f:
+    json_data = pd.DataFrame(json.load(f))
 
-# ----------------------------
-# Ejercicio 6: Agrupamiento por carrera
-# ----------------------------
-career_group = csv_df.groupby('carrera')['promedio'].mean()
+# --- Ejercicio 3: Cargar YAML ---
+yaml_path = DATA_DIR / 'students.yaml'
+with open(yaml_path, 'r', encoding='utf-8') as f:
+    yaml_data = pd.DataFrame(yaml.safe_load(f))
 
-# ----------------------------
-# Ejercicio 7: Conteo de género
-# ----------------------------
-total_male = int((csv_df['genero'] == 'M').sum())
-total_female = int((csv_df['genero'] == 'F').sum())
+# --- Ejercicio 6: Agrupamiento por carrera ---
+career_group = csv_data.groupby('carrera')['promedio'].mean()
 
-# ----------------------------
-# Ejercicio 9: Comparación de registros
-# ----------------------------
+# --- Ejercicio 7: Conteo de género ---
+total_male = int((csv_data['genero'] == 'M').sum())
+total_female = int((csv_data['genero'] == 'F').sum())
+
+# --- Ejercicio 9: Comparación de datasets ---
+# Compara si todos los DataFrames tienen los mismos contenidos
 count_compare = {
-    'CSV': len(csv_df),
-    'JSON': len(json_df),
-    'YAML': len(yaml_df)
-}
+    'CSV'
