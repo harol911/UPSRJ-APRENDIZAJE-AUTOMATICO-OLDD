@@ -82,3 +82,4 @@ count_compare = (
     )
 )
 plog(f"Registros en CSV/JSON/YAML: {count_compare}", level=ERROR if count_compare is None else DEBUG, eol=True)
+#1
