@@ -44,4 +44,9 @@ total_female = int((csv_data['genero'] == 'F').sum())
 # --- Ejercicio 9: Comparación de datasets ---
 # Compara si todos los DataFrames tienen los mismos contenidos
 count_compare = {
-    'CSV'
+    'CSV': len(csv_data),
+    'JSON': len(json_data),
+    'YAML': len(yaml_data)
+}
+all_equal = csv_data.equals(json_data) and csv_data.equals(yaml_data) and json_data.equals(yaml_data)
+
