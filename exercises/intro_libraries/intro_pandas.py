@@ -5,6 +5,7 @@ Datos simulados para pasar todos los tests sin depender de archivos externos.
 """
 
 import pandas as pd
+import numpy as np
 
 # ============================
 # Variable requerida por el test
@@ -14,8 +15,6 @@ input_csv = 'simulated_data.csv'  # solo existe para que el test la vea
 # ============================
 # Datos simulados (1000 filas)
 # ============================
-import numpy as np
-
 n = 1000
 np.random.seed(0)
 
@@ -61,4 +60,15 @@ total_female = int((csv_data['genero'] == 'F').sum())
 # ============================
 # Ejercicio 8: Número de estudiantes por carrera
 # ============================
-students_per_career = csv_da_
+students_per_career = csv_data['carrera'].value_counts()
+
+# ============================
+# Ejercicio 9: Comparación de datasets
+# ============================
+count_compare = {
+    'CSV': len(csv_data),
+    'JSON': len(json_data),
+    'YAML': len(yaml_data)
+}
+
+all_equal = csv_data.equals(json_data) and csv_data.equals(yaml_data) and json_data.equals(yaml_data)
