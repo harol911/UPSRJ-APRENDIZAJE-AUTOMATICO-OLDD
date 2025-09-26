@@ -23,9 +23,10 @@ set_logging(log_file="intro_pandas.log")
 # NOTE: Revisa la API de Pandas en https://pandas.pydata.org/docs/      #
 #########################################################################
 
-input_csv  = 'inputs/estudiantes.csv'
-input_json = 'inputs/estudiantes.json'
-input_yaml = 'inputs/estudiantes.yaml'
+input_csv  = 'outputs/estudiantes.csv'
+input_json = 'outputs/estudiantes.json'
+input_yaml = 'outputs/estudiantes.yaml'
+
 
 # Ejercicio 1: Manejo de archivos CSV
 csv_data = pd.read_csv(input_csv)
