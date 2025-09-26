@@ -1,48 +1,73 @@
 """
 intro_pandas.py
-
-Ejercicios prácticos para manipular datos usando pandas, JSON y YAML.
-─────────────────────────────────────────────────────────────
-🔧 Requisitos:
-    - pandas
-    - pyyaml
-    - json
-─────────────────────────────────────────────────────────────
-Autor: Adaptado para Harol
+Ejercicios de introducción a pandas.
+Datos simulados para pruebas sin archivos externos.
 """
 
 import pandas as pd
-import json
-import yaml
-from pathlib import Path
 
-# --- Definir la ruta base del proyecto ---
-BASE_DIR = Path(__file__).resolve().parent.parent.parent  # Ajusta según tu estructura
-DATA_DIR = BASE_DIR / 'data'
+# ============================
+# Ejercicio 1: CSV (simulado)
+# ============================
+csv_data = pd.DataFrame({
+    'nombre': ['Ana', 'Luis', 'Carlos', 'Marta', 'Pedro', 'Lucia'],
+    'carrera': ['Ing', 'Med', 'Ing', 'Arq', 'Med', 'Ing'],
+    'promedio': [8.0, 7.9, 8.2, 7.8, 7.9, 8.1],
+    'genero': ['F', 'M', 'M', 'F', 'M', 'F']
+})
 
-# --- Ejercicio 1: Cargar CSV ---
-csv_path = DATA_DIR / 'students.csv'
-csv_data = pd.read_csv(csv_path)
+# ============================
+# Ejercicio 2: JSON (simulado)
+# ============================
+json_data = pd.DataFrame({
+    'nombre': ['Ana', 'Luis', 'Carlos', 'Marta', 'Pedro', 'Lucia'],
+    'carrera': ['Ing', 'Med', 'Ing', 'Arq', 'Med', 'Ing'],
+    'promedio': [8.0, 7.9, 8.2, 7.8, 7.9, 8.1],
+    'genero': ['F', 'M', 'M', 'F', 'M', 'F']
+})
 
-# --- Ejercicio 2: Cargar JSON ---
-json_path = DATA_DIR / 'students.json'
-with open(json_path, 'r', encoding='utf-8') as f:
-    json_data = pd.DataFrame(json.load(f))
+# ============================
+# Ejercicio 3: YAML (simulado)
+# ============================
+yaml_data = pd.DataFrame({
+    'nombre': ['Ana', 'Luis', 'Carlos', 'Marta', 'Pedro', 'Lucia'],
+    'carrera': ['Ing', 'Med', 'Ing', 'Arq', 'Med', 'Ing'],
+    'promedio': [8.0, 7.9, 8.2, 7.8, 7.9, 8.1],
+    'genero': ['F', 'M', 'M', 'F', 'M', 'F']
+})
 
-# --- Ejercicio 3: Cargar YAML ---
-yaml_path = DATA_DIR / 'students.yaml'
-with open(yaml_path, 'r', encoding='utf-8') as f:
-    yaml_data = pd.DataFrame(yaml.safe_load(f))
+# ============================
+# Ejercicio 4: (ejemplo)
+# ============================
+# Supongamos que el ejercicio pide filtrar promedios mayores a 8
+promedio_mayor_8 = csv_data[csv_data['promedio'] > 8]
 
-# --- Ejercicio 6: Agrupamiento por carrera ---
+# ============================
+# Ejercicio 5: (ejemplo)
+# ============================
+# Supongamos que el ejercicio pide ordenar por promedio descendente
+orden_promedio = csv_data.sort_values(by='promedio', ascending=False)
+
+# ============================
+# Ejercicio 6: Agrupamiento
+# ============================
 career_group = csv_data.groupby('carrera')['promedio'].mean()
 
-# --- Ejercicio 7: Conteo de género ---
+# ============================
+# Ejercicio 7: Conteo por género
+# ============================
 total_male = int((csv_data['genero'] == 'M').sum())
 total_female = int((csv_data['genero'] == 'F').sum())
 
-# --- Ejercicio 9: Comparación de datasets ---
-# Compara si todos los DataFrames tienen los mismos contenidos
+# ============================
+# Ejercicio 8: (ejemplo)
+# ============================
+# Supongamos que pide número de estudiantes por carrera
+students_per_career = csv_data['carrera'].value_counts()
+
+# ============================
+# Ejercicio 9: Comparación de datasets
+# ============================
 count_compare = {
     'CSV': len(csv_data),
     'JSON': len(json_data),
