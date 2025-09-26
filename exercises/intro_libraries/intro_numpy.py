@@ -86,3 +86,5 @@ print(f"count: {count}")
 # - ¿Qué diferencia hay entre np.array y np.arange?
 # - ¿Por qué es útil la matriz identidad en álgebra lineal?
 # - ¿Qué significa normalizar un arreglo y cuándo se usa?
+
+#si
