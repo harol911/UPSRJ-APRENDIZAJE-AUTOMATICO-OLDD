@@ -20,6 +20,7 @@ import numpy as np
 
 # Ejercicio 1: Crear un arreglo de 10 ceros
 
+#2
 
 
 arg1 = np.zeros(10)
