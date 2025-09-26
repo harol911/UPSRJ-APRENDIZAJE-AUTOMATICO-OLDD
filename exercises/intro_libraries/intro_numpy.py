@@ -12,14 +12,7 @@ fecha: 11/09/2025
 """
 # Librerías necesarias
 import numpy as np
-# Adjust the import path to include the parent directory for py_utils
-import sys
-import os
-from logging import DEBUG, INFO, WARNING, ERROR
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-from py_utils.logger import set_logging, plog
 
-set_logging(log_file="intro_numpy.log")
 
 #########################################################################
 # NOTE: Revisa la API de Numpy en https://numpy.org/doc/1.21/reference/ #
@@ -27,107 +20,67 @@ set_logging(log_file="intro_numpy.log")
 
 # Ejercicio 1: Crear un arreglo de 10 ceros
 
-# TODO: Crea un arreglo 'arg1' de 10 elementos con valor 0. 
+
 
 arg1 = np.zeros(10)
-
-# Impresion de la salida arg1
-plog(f"arreglo 1: {arg1}", level=ERROR if arg1 is None else DEBUG, eol=True)
+print(f"arreglo 1: {arg1}")
 
 # Ejercicio 2: Crear un arreglo de números del 10 al 49
-#
-# TODO: Genera los números del 10 al 49 en un arreglo 'arg2'. 
-#
-arg2 = np.arange(10, 50)
 
-# Impresion de la salida arg2
-plog(f"arreglo 2: {arg2}", level=ERROR if arg2 is None else DEBUG, eol=True)
+arg2 = np.arange(10, 50)
+print(f"arreglo 2: {arg2}")
 
 # Ejercicio 3: Invertir el arreglo anterior
-#
-# TODO: Invierte el orden del arreglo 'arg2', guardando el resultado en 'arg3'. 
-#
-arg3 = arg2[::-1]
 
-# Impresion de la salida arg3
-plog(f"arreglo 3: {arg3}", level=ERROR if arg3 is None else DEBUG, eol=True)
+arg3 = arg2[::-1]
+print(f"arreglo 3: {arg3}")
 
 # Ejercicio 4: Crear una matriz 3x3 con valores del 0 al 8
-#
-# TODO: Crea una matriz 3x3 llamada 'mat' con valores del 0 al 8
-#
-mat = np.arange(9).reshape(3, 3)
 
-# Impresion de la salida mat
-plog(f"matriz:\n{mat}", level=ERROR if mat is None else DEBUG, eol=True)
+
+mat = np.arange(9).reshape(3, 3)
+print(f"matriz:\n{mat}")
 
 # Ejercicio 5: Encontrar índices de elementos mayores a 5
-#
-# TODO: Encuentra posiciones donde el valor > 5 en 'mat', guardando los índices en 'indices'
+
 
 indices = np.where(mat > 5)
-
-# Impresion de la salida indices
-plog(f"indices: {indices}", level=ERROR if indices is None else DEBUG, eol=True)
+print(f"indices: {indices}")
 
 # Ejercicio 6: Calcular la media, mediana y desviación estándar
-#
-# TODO: Calcula la media, mediana y desviaciación estándar sobre el arreglo 'arg2', guardando los resultados en 'mean', 'median' y 'std'
-#
+
 mean = np.mean(arg2)
 median = np.median(arg2)
-std = np.std(arg2) 
-
-# Impresion de la salida mean, median y std
-plog(f"mean: {mean}, median: {median}, std: {std}", level=ERROR if None in (mean, median, std) else DEBUG, eol=True)
+std = np.std(arg2)
+print(f"mean: {mean}, median: {median}, std: {std}")
 
 # Ejercicio 7: Crear una matriz identidad de tamaño 4x4
-#
-# TODO: Genera la matriz identidad 4x4 llamada 'identity'
-#
-identity = np.eye(4)
 
-# Impresion de la salida identity
-plog(f"identity:\n{identity}", level=ERROR if identity is None else DEBUG, eol=True)
+identity = np.eye(4)
+print(f"identity:\n{identity}")
 
 # Ejercicio 8: Multiplicar dos matrices compatibles
-#
-# TODO: Crea dos matrices 2x2 llamadas 'A' y 'B', llénalas con numeros sucesivos del 1 al 8, 
-#       multiplícalas y guarda el resultado en 'product'
-#
+
 A = np.array([[1, 2], [3, 4]])
 B = np.array([[5, 6], [7, 8]])
 product = np.dot(A, B)
-
-# Impresion de la salida product
-plog(f"product:\n{product}", level=ERROR if product is None else DEBUG, eol=True)
+print(f"product:\n{product}")
 
 # Ejercicio 9: Normalizar un arreglo (valores entre 0 y 1)
-#
-# TODO: Declara una función 'normalize 'que normalice un arreglo usando la fórmula: (x - min) / (max - min), 
-#       llamala sobre el arreglo 'arg2' y guarda el resultado en 'normalized'
-#
+# Función normalize
 def normalize(val):
     return (val - val.min()) / (val.max() - val.min())
 
 normalized = normalize(arg2)
-
-#1
-
-# Impresion de la salida normalized
-plog(f"normalized: {normalized}", level=ERROR if normalized is None else DEBUG, eol=True)
+print(f"normalized: {normalized}")
 
 # Ejercicio 10: Crear un arreglo aleatorio de 100 elementos y contar cuántos están entre 0.3 y 0.7
-#
-# TODO: Genera un arreglo 1x100 de numeros aleatorios con una semilla de 0. 
-#       Cuenta cuántos valores están entre 0.3 y 0.7 usando np.logical_and, guardando el conteo en 'count'
+
 
 np.random.seed(0)
 random_array = np.random.rand(100)
 count = np.sum(np.logical_and(random_array > 0.3, random_array < 0.7))
-
-# Impresion de la salida count
-plog(f"count: {count}", level=ERROR if count is None else DEBUG, eol=True)
+print(f"count: {count}")
 
 # 🧠 Preguntas interpretativas (responde en comentarios):
 # - ¿Qué diferencia hay entre np.array y np.arange?
