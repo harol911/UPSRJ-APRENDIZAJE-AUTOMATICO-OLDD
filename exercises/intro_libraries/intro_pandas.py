@@ -11,8 +11,6 @@ Requisitos:
 # Librerías necesarias
 import pandas as pd
 import yaml
-
-
 import sys
 import os
 from logging import DEBUG, INFO, WARNING, ERROR
@@ -74,9 +72,6 @@ plog(f"Total mujeres: {total_female}", level=DEBUG, eol=True)
 
 # Exportar estudiantes con promedio > 9
 os.makedirs('outputs', exist_ok=True)
-
-
-
 above_nine.to_csv('outputs/excelentes.csv', index=False)
 plog(f"Datos exportados a outputs/excelentes.csv", level=INFO)
 above_nine.to_json('outputs/excelentes.json', orient='records', indent=2)
