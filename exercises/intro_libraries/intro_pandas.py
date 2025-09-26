@@ -72,3 +72,4 @@ count_compare = {
 }
 
 all_equal = csv_data.equals(json_data) and csv_data.equals(yaml_data) and json_data.equals(yaml_data)
+
