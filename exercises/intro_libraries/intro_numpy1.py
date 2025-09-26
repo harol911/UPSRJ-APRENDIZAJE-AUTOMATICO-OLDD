@@ -13,7 +13,7 @@ fecha: 11/09/2025
 # Librerías necesarias
 import numpy as np
 
-#1
+#12
 
 #########################################################################
 # NOTE: Revisa la API de Numpy en https://numpy.org/doc/1.21/reference/ #

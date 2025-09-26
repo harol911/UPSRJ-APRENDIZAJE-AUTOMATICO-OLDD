@@ -6,7 +6,7 @@ import os
 from logging import DEBUG, ERROR
 
 # Ajustar path para importar py_utils
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(_file_), '..', '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 from py_utils.logger import set_logging, plog
 
 set_logging(log_file="intro_pandas.log")
@@ -55,7 +55,7 @@ plog(f"Promedio por carrera: {general_mean}", level=ERROR if general_mean is Non
 
 # Ejercicio 07: Conteo por género (usar csv_df)
 total_male = int((csv_df["genero"] == "M").sum())
-total_female = int((csv_df["genero"] == "M").sum())  # Mismo cálculo
+total_female = int((csv_df["genero"] == "F").sum())  # Corregido: debe ser "F" para mujeres
 plog(f"Total hombres: {total_male}", level=ERROR if total_male is None else DEBUG, eol=True)
 plog(f"Total mujeres: {total_female}", level=ERROR if total_female is None else DEBUG, eol=True)
 
