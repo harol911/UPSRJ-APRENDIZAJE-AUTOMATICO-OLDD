@@ -6,17 +6,17 @@ import os
 from logging import DEBUG, ERROR
 
 # Ajustar path para importar py_utils
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(_file_), '..', '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 from py_utils.logger import set_logging, plog
 
 set_logging(log_file="intro_pandas.log")
 
 # Definir rutas de archivos
-input_csv  = '../exercises/intro_libraries/inputs/estudiantes.csv'
-input_json = '../exercises/intro_libraries/inputs/estudiantes.json'
-input_yaml = '../exercises/intro_libraries/inputs/estudiantes.yaml'
+input_csv  = os.path.join(os.path.dirname(__file__), '../exercises/intro_libraries/inputs/estudiantes.csv')
+input_json = os.path.join(os.path.dirname(__file__), '../exercises/intro_libraries/inputs/estudiantes.json')
+input_yaml = os.path.join(os.path.dirname(__file__), '../exercises/intro_libraries/inputs/estudiantes.yaml')
 
-# Cargamos DataFrames (ESTAS LÍNEAS DEBEN ESTAR ACTIVAS)
+# Cargamos DataFrames
 _csv_df = pd.read_csv(input_csv)
 _json_df = pd.read_json(input_json)
 with open(input_yaml, "r", encoding="utf-8") as f:
@@ -27,8 +27,8 @@ _yaml_df = pd.DataFrame(_yaml_loaded)
 csv_data = len(_csv_df)   # int (para el test)
 plog(f"csv: {csv_data}", level=ERROR if csv_data is None else DEBUG, eol=True)
 
-# Pero necesitamos el DataFrame para los demás ejercicios
-csv_df = _csv_df  # DataFrame completo
+# DataFrame completo para otros ejercicios
+csv_df = _csv_df
 
 # Ejercicio 02: número de filas JSON
 json_data = len(_json_df)  # int
@@ -47,20 +47,18 @@ above_nine = csv_df[csv_df["promedio"] > 9]
 plog(f"Estudiantes con promedio > 9: {above_nine}", level=ERROR if above_nine is None else DEBUG, eol=True)
 
 # Ejercicio 06: Agrupamiento y estadísticas
-# Simplemente replicar exactamente lo que hace el test
-career_group = csv_df.groupby('carrera')['promedio'].mean()  # Esto es general_mean del test
+career_group = csv_df.groupby('carrera')['promedio'].mean()  # Promedio por carrera
 general_mean = career_group.mean()
+plog(f"Promedio general por carrera: {general_mean}", level=ERROR if general_mean is None else DEBUG, eol=True)
 
-plog(f"Promedio por carrera: {general_mean}", level=ERROR if general_mean is None else DEBUG, eol=True)
-
-# Ejercicio 07: Conteo por género (usar csv_df)
+# Ejercicio 07: Conteo por género
 total_male = int((csv_df["genero"] == "M").sum())
-total_female = int((csv_df["genero"] == "M").sum())  # Mismo cálculo
+total_female = int((csv_df["genero"] == "F").sum())
 plog(f"Total hombres: {total_male}", level=ERROR if total_male is None else DEBUG, eol=True)
 plog(f"Total mujeres: {total_female}", level=ERROR if total_female is None else DEBUG, eol=True)
 
-# Ejercicio 08: Exportar datos (usar above_nine que ya viene de csv_df)
-output_dir = "exercises/intro_libraries/outputs"
+# Ejercicio 08: Exportar datos (usar above_nine)
+output_dir = os.path.join(os.path.dirname(__file__), "outputs")
 os.makedirs(output_dir, exist_ok=True)
 
 above_nine.to_csv(os.path.join(output_dir, "excelentes.csv"), index=False)
@@ -74,9 +72,14 @@ json_check = pd.read_json(os.path.join(output_dir, "excelentes.json"))
 with open(os.path.join(output_dir, "excelentes.yaml"), "r", encoding="utf-8") as f:
     yaml_check = pd.DataFrame(yaml.safe_load(f))
 
+# Comparación más confiable
 count_compare = (
-    csv_check.equals(json_check) and
-    csv_check.equals(yaml_check) and
-    json_check.equals(yaml_check)
+    csv_check.reset_index(drop=True).sort_index(axis=1).equals(
+        json_check.reset_index(drop=True).sort_index(axis=1)
+    ) and
+    csv_check.reset_index(drop=True).sort_index(axis=1).equals(
+        yaml_check.reset_index(drop=True).sort_index(axis=1)
+    )
 )
 plog(f"Registros en CSV/JSON/YAML: {count_compare}", level=ERROR if count_compare is None else DEBUG, eol=True)
+
