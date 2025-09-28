@@ -45,7 +45,7 @@ inverse = linalg.inv(A)
 # Impresion de la salida determinant e inverse
 plog(f"determinant: {determinant}, inverse:\n{inverse}", level=ERROR if None in (determinant, inverse) else DEBUG, eol=True)
 
-# Ejercicio 3: Estadísticas básicas sobre una muestraa
+# Ejercicio 3: Estadísticas básicas sobre una muestra
 # 
 # TODO: Obtén la media, desviación estándar y moda sobre un arreglo de datos [1, 2, 2, 3, 4, 4, 4, 5]
 # 
