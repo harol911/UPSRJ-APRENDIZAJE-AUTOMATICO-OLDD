@@ -13,29 +13,19 @@ fecha: 11/09/2025
 # Librerías necesarias
 import numpy as np
 
-
-
 #########################################################################
 # NOTE: Revisa la API de Numpy en https://numpy.org/doc/1.21/reference/ #
 #########################################################################
 
 # Ejercicio 1: Crear un arreglo de 10 ceros
-
-
-
-
 arg1 = np.zeros(10)
 print(f"arreglo 1: {arg1}")
 
 # Ejercicio 2: Crear un arreglo de números del 10 al 49
-
-
 arg2 = np.arange(10, 50)
 print(f"arreglo 2: {arg2}")
 
 # Ejercicio 3: Invertir el arreglo anterior
-
-
 arg3 = arg2[::-1]
 print(f"arreglo 3: {arg3}")
 
@@ -46,9 +36,6 @@ mat = np.arange(9).reshape(3, 3)
 print(f"matriz:\n{mat}")
 
 # Ejercicio 5: Encontrar índices de elementos mayores a 5
-
-
-
 indices = np.where(mat > 5)
 print(f"indices: {indices}")
 # Alternativa más legible: obtener los valores también
@@ -56,26 +43,16 @@ elementos_mayores = mat[mat > 5]
 print(f"elementos mayores a 5: {elementos_mayores}")
 
 # Ejercicio 6: Calcular la media, mediana y desviación estándar
-
-
 mean = np.mean(arg2)
 median = np.median(arg2)
 std = np.std(arg2)
 print(f"mean: {mean}, median: {median}, std: {std}")
 
 # Ejercicio 7: Crear una matriz identidad de tamaño 4x4
-
-
-
-
 identity = np.eye(4)
 print(f"identity:\n{identity}")
 
 # Ejercicio 8: Multiplicar dos matrices compatibles
-
-
-
-
 A = np.array([[1, 2], [3, 4]])
 B = np.array([[5, 6], [7, 8]])
 # Dos formas de multiplicar matrices:
@@ -85,10 +62,6 @@ print(f"product (dot):\n{product_dot}")
 print(f"product (@):\n{product_at}")
 
 # Ejercicio 9: Normalizar un arreglo (valores entre 0 y 1)
-
-
-
-
 def normalize(val):
     """Normaliza un arreglo para que sus valores estén entre 0 y 1"""
     return (val - val.min()) / (val.max() - val.min())
@@ -157,4 +130,3 @@ print(f"Potencia: {arr_a ** arr_b}")
    - Análisis de datos (comparar variables con diferentes unidades)
    - Redes neuronales (mejora la convergencia del entrenamiento)
 """
-
