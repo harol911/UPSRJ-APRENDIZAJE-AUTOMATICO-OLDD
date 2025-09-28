@@ -17,7 +17,7 @@ import numpy as np
 # NOTE: Revisa la API de Numpy en https://numpy.org/doc/1.21/reference/ #
 #########################################################################
 
-# Ejercicio 1: Crear un arreglo de 10 ceros
+# Ejercicio 1: Crear un arreglo de 10 cerosd
 arg1 = np.zeros(10)
 print(f"arreglo 1: {arg1}")
 
