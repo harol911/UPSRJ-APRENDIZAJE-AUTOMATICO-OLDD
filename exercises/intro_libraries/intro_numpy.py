@@ -55,11 +55,8 @@ print(f"identity:\n{identity}")
 # Ejercicio 8: Multiplicar dos matrices compatibles
 A = np.array([[1, 2], [3, 4]])
 B = np.array([[5, 6], [7, 8]])
-# Dos formas de multiplicar matrices:
-product_dot = np.dot(A, B)  # Multiplicación matricial
-product_at = A @ B          # Operador @ (más moderno)
-print(f"product (dot):\n{product_dot}")
-print(f"product (@):\n{product_at}")
+product = np.dot(A, B)
+print(f"product:\n{product}")
 
 # Ejercicio 9: Normalizar un arreglo (valores entre 0 y 1)
 def normalize(val):
