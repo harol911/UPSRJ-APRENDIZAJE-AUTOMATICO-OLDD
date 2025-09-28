@@ -37,7 +37,7 @@ print(f"arreglo 2: {arg2}")
 arg3 = arg2[::-1]
 print(f"arreglo 3: {arg3}")
 
-# Ejercicio 4: Crear una matriz 3x3 con valores del 0 al 8
+# Ejercicio 4: Crear una matriz 3x3 con valores del 0 al 86
 
 
 mat = np.arange(9).reshape(3, 3)
