@@ -26,12 +26,12 @@ class DataSource:
         try:
             # TODO: Fetch data from url with pandas and save it into "data"
             # NOTE: https://pandas.pydata.org/docs/dev/reference/api/pandas.read_csv.html
-            data = pd.DataFrame()
+            data = pd.read_csv(self.url)
             mlog(f"Data fetched from source. Review {log_file}", f"Data fetched from source.\n{data.sample(5).to_string()}", level=DEBUG, eol=True)
             
             # TODO: Generate an statistic resume of numeric columns of "data"
             # NOTE: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.describe.html
-            pass
+            mlog(f"Statistical summary. Review {log_file}", f"\n{data.describe().to_string()}", level=DEBUG, eol=True)
         
         except:
             data = None
@@ -52,7 +52,7 @@ class DataSource:
             #          - The CO2 emissions  
             #
             # NOTE: https://www.geeksforgeeks.org/python/different-ways-to-create-pandas-dataframe/#creating-a-dataframe-from-another-dataframe
-            relevant_features = pd.DataFrame()
+            relevant_features = self.data[['ENGINESIZE', 'CYLINDERS', 'FUELCONSUMPTION_COMB', 'CO2EMISSIONS']].copy()
             mlog(f"Data fetched from source. Review {log_file}", f"Data fetched from source.\n{relevant_features.sample(9).to_string()}", level=DEBUG, eol=True)
         except:
             relevant_features = None
@@ -68,7 +68,11 @@ class DataSource:
             # 
             # NOTE: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.hist.html
             #       https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.savefig.html
-            viz = pd.DataFrame()
+            viz = self.relevant_features.copy()
+            viz.hist(figsize=(10, 8))
+            plt.tight_layout()
+            plt.savefig(out)
+            plt.close()
             plog(f"Created histogram plot {out}", level=INFO, eol=True)
             
         except:
@@ -81,6 +85,12 @@ class DataSource:
             #
             # NOTE: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.scatter.html
             #       https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.scatter.html
+            plt.figure(figsize=(8, 6))
+            plt.scatter(x, y)
+            plt.xlabel(x_label)
+            plt.ylabel(y_label)
+            plt.savefig(out)
+            plt.close()
             plog(f"Created scatter plot {out}", level=INFO, eol=True)
 
         except:
@@ -93,7 +103,7 @@ class DataSource:
             # TODO: Define a method that extracts the data from features of "relevant_features" as numpy type, assign the value to "data".
             # 
             # NOTE: https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_numpy.html
-            data = np.zeros(0)
+            data = self.relevant_features[feature].to_numpy()
             mlog(f"{feature} data extracted from source. Review {log_file}", data, level=DEBUG, eol=True)
         
         except:
